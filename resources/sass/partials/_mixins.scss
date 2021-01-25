@@ -1,0 +1,20 @@
+@mixin display-flex {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin before-after {
+  font-weight: bold;
+  font-family: $font_awesome;
+}
+
+@mixin clear-fix {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+@mixin transition_hover {
+  transition: all $hover_time ease-in-out;
+}
