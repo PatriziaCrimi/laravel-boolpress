@@ -1,0 +1,17 @@
+----------------------------- DB BOOLPRESS -----------------------------
+
+
+--------- POSTS TABLE ---------
+CLASS "POST"
+
+id												INT, PRIMARY_KEY (AUTO_INCREMENT, NOT NULL, UNIQUE, INDEX)
+title											VARCHAR (50), NOT NULL
+subtitle										VARCHAR (50), NULL
+author											VARCHAR (30), NOT NULL
+cathegory										VARCHAR (20), NULL
+content											LONGTEXT, NOT NULL
+summary											MEDIUMTEXT, NULL
+publication_date								DATETIME, NULL
+notes											VARCHAR(255), NULL
+created_at										TIMESTAMP
+updated_at										TIMESTAMP
