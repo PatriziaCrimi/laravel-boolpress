@@ -25,7 +25,7 @@
         <ul class="navbar-nav px-3 ml-auto">
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('index') }}">
-                    Visita il sito
+                    Visit website
                 </a>
             </li>
             <li class="nav-item">

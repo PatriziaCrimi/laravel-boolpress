@@ -32,4 +32,5 @@ If I add the middleware() function here, I can remove it from the file "HomeCont
 
 Route::prefix('admin')->namespace('Admin')->middleware('auth')->name('admin.')->group(function() {
   Route::get('/', 'HomeController@index')->name('index');
+  Route::resource('/posts', 'PostController');
 });
