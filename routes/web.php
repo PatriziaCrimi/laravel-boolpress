@@ -13,12 +13,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// ----------- PUBLIC ROUTES -----------
+// No need to be logged in to be navigated
+Route::get('/', 'HomeController@index')->name('index');
+
+Route::get('/contacts', 'HomeController@contacts')->name('contacts');
+
+// Removing the route "Register"
+Auth::routes(['register' => false]);
+
+// ----------- AUTHENTICATION ROUTES -----------
+// Need to be logged in to be navigated
+
+/*
+The instruction "middleware()" is needed to manage all the routes which need an authentication to be navigated --> the user needs to be logged in
+If I add the middleware() function here, I can remove it from the file "HomeController.php" (where there is a CONSTRUCTOR __construct)
+*/
+
+Route::prefix('admin')->namespace('Admin')->middleware('auth')->name('admin.')->group(function() {
+  Route::get('/', 'HomeController@index')->name('index');
 });
-
-Auth::routes();
-
-// The instruction "middleware()" is needed to manage all the routes which need an authentication to be navigated --> the user needs to be logged in
-// If I add the middleware() function here, I can remove it from the file "HomeController.php" (where there is a CONSTRUCTOR __construct)
-Route::get('/home', 'Admin\HomeController@index')->name('dashboard')->middleware('auth');
