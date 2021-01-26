@@ -5,11 +5,11 @@
 CLASS "POST"
 
 id												INT, PRIMARY_KEY (AUTO_INCREMENT, NOT NULL, UNIQUE, INDEX)
-title											VARCHAR (150), NOT NULL
-subtitle										VARCHAR (100), NULL
+title											VARCHAR (200), NOT NULL
+subtitle										VARCHAR (150), NULL
 slug											VARCHAR (255), NOT NULL, UNIQUE, INDEX
-cathegories										VARCHAR (30), NULL
-topics											VARCHAR (50), NULL
+cathegories										VARCHAR (100), NULL
+topics											VARCHAR (100), NULL
 content											LONGTEXT, NOT NULL
 summary											MEDIUMTEXT, NULL
 publication_date								DATETIME, NULL
