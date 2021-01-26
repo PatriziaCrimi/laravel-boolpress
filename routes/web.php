@@ -19,4 +19,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// The instruction "middleware()" is needed to manage all the routes which need an authentication to be navigated --> the user needs to be logged in
+// If I add the middleware() function here, I can remove it from the file "HomeController.php" (where there is a CONSTRUCTOR __construct)
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
