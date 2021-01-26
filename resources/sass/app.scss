@@ -1,7 +1,8 @@
-@import 'node_modules/bootstrap/scss/bootstrap';
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
 
-@import 'partials/variables';
-@import 'partials/mixins';
-@import 'partials/common';
-@import 'partials/main_home';
-@import 'partials/errors';
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
