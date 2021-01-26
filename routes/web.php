@@ -16,11 +16,12 @@ use Illuminate\Support\Facades\Route;
 // ----------- PUBLIC ROUTES -----------
 // No need to be logged in to be navigated
 Route::get('/', 'HomeController@index')->name('index');
-
 Route::get('/contacts', 'HomeController@contacts')->name('contacts');
+Route::get('/posts', 'PostController@index')->name('posts.index');
 
 // Removing the route "Register"
 Auth::routes(['register' => false]);
+
 
 // ----------- AUTHENTICATION ROUTES -----------
 // Need to be logged in to be navigated
