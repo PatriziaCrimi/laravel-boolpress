@@ -4,27 +4,28 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h1 class="text-center text-uppercase">New post</h1>
+      <h1 class="text-center text-uppercase">Edit post #{{$post->id}}</h1>
     </div>
   </div>
   <div class="row">
     <div class="col-12">
-      <form action="{{route('admin.posts.store')}}" method="POST">
+      <form action="{{route('admin.posts.update', ['post' => $post->id])}}" method="POST">
         @csrf
+        @method('PUT')
         <div class="form-group">
           <label for="title">Title</label>
-          <input type="text" class="form-control" name="title" placeholder="Write your title here" maxlength="200" required>
+          <input type="text" value="{{$post->title}}" class="form-control" name="title" maxlength="200" required>
         </div>
         <div class="form-group">
           <label for="subtitle">Subtitle</label>
-          <input type="text" class="form-control" name="subtitle" placeholder="Write your subtitle here." maxlength="150">
+          <input type="text" value="{{$post->subtitle}}" class="form-control" name="subtitle" maxlength="150">
         </div>
         <div class="form-group">
           <label for="category">Category</label>
           <select class="form-control" name="category_id">
             <option value="">--select category--</option>
             @foreach ($categories as $category)
-              <option value="{{$category->id}}">
+              <option value="{{$category->id}}" {{$category->id == $post->category_id ? 'selected=selected' : ''}}>
                 {{$category->name}}
               </option>
             @endforeach
@@ -32,19 +33,19 @@
         </div>
         <div class="form-group">
           <label for="content">Content</label>
-          <textarea class="form-control" name="content" required></textarea>
+          <textarea class="form-control" name="content" required>{{$post->content}}</textarea>
         </div>
         <div class="form-group">
           <label for="summary">Summary</label>
-          <textarea class="form-control" name="summary"></textarea>
+          <textarea class="form-control" name="summary">{{$post->summary}}</textarea>
         </div>
         <div class="form-group">
           <label for="notes">Notes</label>
-          <input type="text" class="form-control" name="notes" maxlength="255">
+          <input type="text" value="{{$post->notes}}" class="form-control" name="notes" maxlength="255">
         </div>
         <div class="form-group d-flex justify-content-end">
           <button type="submit" class="btn btn-success text-uppercase">
-            Submit
+            Save
           </button>
         </div>
       </form>

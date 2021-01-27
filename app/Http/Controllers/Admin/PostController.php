@@ -97,9 +97,17 @@ class PostController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function edit($id)
+  public function edit(Post $post)
   {
-      //
+    if(!$post) {
+      abort(404);
+    }
+
+    $data = [
+      'post' => $post,
+      'categories' => Category::all()
+    ];
+    return view('admin.posts.edit', $data);
   }
 
   /**
@@ -109,9 +117,38 @@ class PostController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, $id)
+  public function update(Request $request, Post $post)
   {
-      //
+    $form_data = $request->all();
+    /* SLUG CONTROLS*/
+    // Checking that the new title is different from the old one
+    if($post->title != $form_data['title']) {
+      // If the new title is different I must generate a new slug
+      // Generating the slug
+      $slug = Str::slug($form_data['title']);
+      $root_slug = $slug;
+      /*
+        Checking that the slug is UNIQUE -> it should NOT exist already in my db
+        QUERY: SELECT 'slug' FROM 'posts' WHERE slug = $slug
+        We need ->first() because "where" restituisce una COLLECTION and I need only the first result
+      */
+      $current_post = Post::where('slug', $slug)->first();
+      $counter = 1;
+      // The while loop starts when a post with the same slug is found
+      while($current_post) {
+        // Generating a new slug with a number at the end to make it different
+        $slug = $root_slug . '-' . $counter;
+        $counter++;
+        // New QUERY to check if there is another post with this new slug
+        $current_post = Post::where('slug', $slug)->first();
+      }
+      // Assigning the final unique slug
+      $form_data['slug'] = $slug;
+    }
+    // Saving all new data of the Object/Instance in the database
+    $post->update($form_data);
+    // Redirecting to the view with all posts
+    return redirect()->route('admin.posts.index');
   }
 
   /**

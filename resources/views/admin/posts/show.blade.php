@@ -46,9 +46,13 @@
               </li>
             @endif
           </ul>
-          <div class="card-body">
-            <a href="#" class="card-link">DELETE</a>
-            <a href="#" class="card-link">EDIT</a>
+          <div class="card-body d-flex justify-content-between">
+            <a class="btn btn-warning text-uppercase" href="{{route('admin.posts.edit', ['post' => $post->id])}}">
+              Edit
+            </a>
+            <a class="btn btn-danger text-uppercase" href="#">
+              Delete
+            </a>
           </div>
         </div>
       </div>

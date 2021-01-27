@@ -7,7 +7,7 @@
     <div class="col-12">
       <div class="flex-wrapper d-flex justify-content-between">
         <h1 class="text-left">All posts</h1>
-        <a class="btn btn-success text-uppercase font-weight-bold" href="{{route('admin.posts.create')}}">
+        <a class="btn btn-primary text-uppercase font-weight-bold" href="{{route('admin.posts.create')}}">
           New post
         </a>
       </div>
@@ -27,13 +27,13 @@
                 <td>{{ $post->title }}</td>
                 <td>{{ $post->slug }}</td>
                 <td>
-                  <a class="btn btn-info text-uppercase" href="{{route('admin.posts.show', ['post' => $post->id])}}">
+                  <a class="btn btn-info text-uppercase font-weight-bold" href="{{route('admin.posts.show', ['post' => $post->id])}}">
                     Details
                   </a>
-                  <a class="btn btn-info text-uppercase" href="#">
+                  <a class="btn btn-warning text-uppercase font-weight-bold" href="{{route('admin.posts.edit', ['post' => $post->id])}}">
                     Edit
                   </a>
-                  <a class="btn btn-info text-uppercase" href="#">
+                  <a class="btn btn-danger text-uppercase font-weight-bold d-inline-block" href="#">
                     Delete
                   </a>
                 </td>
