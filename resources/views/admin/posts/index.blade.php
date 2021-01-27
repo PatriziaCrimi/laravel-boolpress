@@ -33,9 +33,13 @@
                   <a class="btn btn-warning text-uppercase font-weight-bold" href="{{route('admin.posts.edit', ['post' => $post->id])}}">
                     Edit
                   </a>
-                  <a class="btn btn-danger text-uppercase font-weight-bold d-inline-block" href="#">
-                    Delete
-                  </a>
+                  <form action="{{route('admin.posts.destroy', ['post' => $post->id])}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger text-uppercase" href="#">
+                      Delete
+                    </button>
+                  </form>
                 </td>
               </tr>
             @endforeach
