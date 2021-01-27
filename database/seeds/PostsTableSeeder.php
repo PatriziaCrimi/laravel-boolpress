@@ -25,20 +25,20 @@ class PostsTableSeeder extends Seeder
       $new_post->content = $faker->text();
       $new_post->summary = $faker->paragraph();
       $new_post->publication_date = $faker->datetime();
-      $new_post->notes = $faker->sentence();
+      $new_post->notes = $faker->sentence();      
       // Generating the slug
       $slug = Str::slug($new_post->title);
       $root_slug = $slug;
       /*
-        Checking that the slug is UNIQUE -> it doesn't exist already in my db
-        QUERY: SELECT 'slug' FROM 'posts' WHERE slag = $slag
+        Checking that the slug is UNIQUE -> it should NOT exist already in my db
+        QUERY: SELECT 'slug' FROM 'posts' WHERE slug = $slug
         We need ->first() because "where" restituisce una COLLECTION and I need only the first result
       */
       $current_post = Post::where('slug', $slug)->first();
       $counter = 1;
       // The while loop starts when a post with the same slug is found
       while($current_post) {
-        // Generating a new slug with a final number to make it different
+        // Generating a new slug with a number at the end to make it different
         $slug = $root_slug . '-' . $counter;
         $counter++;
         // New QUERY to check if there is another post with this new slug
