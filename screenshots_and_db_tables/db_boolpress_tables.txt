@@ -1,10 +1,11 @@
 ----------------------------- DB BOOLPRESS -----------------------------
 
 
---------- POSTS TABLE ---------
+● --------- POSTS TABLE ---------
 CLASS "POST"
 
 id												INT, PRIMARY_KEY (AUTO_INCREMENT, NOT NULL, UNIQUE, INDEX)
+user_id (FK per ONE TO MANY)					FOREIGN_KEY, NOT NULL	
 title											VARCHAR (200), NOT NULL
 subtitle										VARCHAR (150), NULL
 slug											VARCHAR (255), NOT NULL, UNIQUE, INDEX
@@ -17,54 +18,55 @@ updated_at										TIMESTAMP
 
 
 
---------- CATEGORIES TABLE ---------
-CLASS "CATEGORY"
-
-id												INT, PRIMARY_KEY (AUTO_INCREMENT, NOT NULL, UNIQUE, INDEX)
-firstname										VARCHAR (30), NULL
-lastname										VARCHAR (30), NULL
-nickname										VARCHAR (30), NOT NULL, UNIQUE, INDEX
-password										VARCHAR, NOT NULL
-email											VARCHAR (30), NOT NULL, UNIQUE, INDEX
-
-
-
---------- TOPICS TABLE ---------
-CLASS "TOPIC"
-
-id												INT, PRIMARY_KEY (AUTO_INCREMENT, NOT NULL, UNIQUE, INDEX)
-firstname										VARCHAR (30), NULL
-lastname										VARCHAR (30), NULL
-nickname										VARCHAR (30), NOT NULL, UNIQUE, INDEX
-password										VARCHAR, NOT NULL
-email											VARCHAR (30), NOT NULL, UNIQUE, INDEX
-
-
-
---------- USERS TABLE ---------
+● --------- USERS TABLE ---------
 CLASS "USER"
 
 id												INT, PRIMARY_KEY (AUTO_INCREMENT, NOT NULL, UNIQUE, INDEX)
+infouser_id (FK per ONE TO ONE)					FOREIGN_KEY, NOT NULL
 firstname										VARCHAR (30), NULL
 lastname										VARCHAR (30), NULL
 nickname										VARCHAR (30), NOT NULL, UNIQUE, INDEX
-password										VARCHAR, NOT NULL
-email											VARCHAR (30), NOT NULL, UNIQUE, INDEX
+password										VARCHAR (255), NOT NULL
+email											VARCHAR (50), NOT NULL, UNIQUE, INDEX
+created_at										TIMESTAMP
+updated_at										TIMESTAMP
 
 
 
---------- AUTHORS TABLE ---------
-CLASS "AUTHOR"
+● --------- INFOUSERS TABLE ---------
+CLASS "INFOUSER"
 
 id												INT, PRIMARY_KEY (AUTO_INCREMENT, NOT NULL, UNIQUE, INDEX)
-firstname										VARCHAR (30), NULL
-lastname										VARCHAR (30), NULL
-nickname										VARCHAR (30), NOT NULL, UNIQUE, INDEX
+user_id (FK per ONE TO ONE)						FOREIGN_KEY, NOT NULL
+mobile_phone									VARCHAR (20), NULL
+address											VARCHAR (255), NULL
+avatar											VARCHAR (255), NULL
+created_at										TIMESTAMP
+updated_at										TIMESTAMP
+
+
+
+● --------- CATEGORIES TABLE ---------
+CLASS "CATEGORY"
+
+id												INT, PRIMARY_KEY (AUTO_INCREMENT, NOT NULL, UNIQUE, INDEX)
+name											VARCHAR (255), NOT NULL
+slug											VARCHAR (255), NOT NULL, UNIQUE, INDEX
+created_at										TIMESTAMP
+updated_at										TIMESTAMP
+
 
 
 
 ----------------------------- TABLES RELATIONSHIPS -----------------------------
 
-POSTS TABLE
-USERS TABLE
-AUTHORS TABLE
+
+● POSTS TABLE & USERS TABLE -> ONE TO MANY: one user writes many posts VS one post written by ONLY one user
+
+
+● USERS TABLE & INFOUSERS TABLE -> ONE TO ONE: one user has one InfoUser details && one InfoUser details belongs to ONLY one user
+// USERS TABLE = primary table
+// INFOUSER = secondary table
+
+
+● POSTS TABLE & CATEGORIES TABLE -> ONE TO MANY: one category can be given to many posts VS one post has ONLY one category
