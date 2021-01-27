@@ -4,8 +4,9 @@
 ● --------- POSTS TABLE ---------
 CLASS "POST"
 
-id												INT, PRIMARY_KEY (AUTO_INCREMENT, NOT NULL, UNIQUE, INDEX)
-user_id (FK per ONE TO MANY)					FOREIGN_KEY, NOT NULL	
+id												BIGINT, PRIMARY_KEY (UNSIGNED, AUTO_INCREMENT, NOT NULL, UNIQUE, INDEX)
+user_id (FK per ONE TO MANY)					FOREIGN_KEY (BIGINT, UNSIGNED), NOT NULL
+category_id (FK per ONE TO MANY)				FOREIGN_KEY (BIGINT, UNSIGNED), NULL
 title											VARCHAR (200), NOT NULL
 subtitle										VARCHAR (150), NULL
 slug											VARCHAR (255), NOT NULL, UNIQUE, INDEX
@@ -21,8 +22,8 @@ updated_at										TIMESTAMP
 ● --------- USERS TABLE ---------
 CLASS "USER"
 
-id												INT, PRIMARY_KEY (AUTO_INCREMENT, NOT NULL, UNIQUE, INDEX)
-infouser_id (FK per ONE TO ONE)					FOREIGN_KEY, NOT NULL
+id												BIGINT, PRIMARY_KEY (UNSIGNED, AUTO_INCREMENT, NOT NULL, UNIQUE, INDEX)
+infouser_id (FK per ONE TO ONE)					FOREIGN_KEY (BIGINT, UNSIGNED), NULL
 firstname										VARCHAR (30), NULL
 lastname										VARCHAR (30), NULL
 nickname										VARCHAR (30), NOT NULL, UNIQUE, INDEX
@@ -36,8 +37,8 @@ updated_at										TIMESTAMP
 ● --------- INFOUSERS TABLE ---------
 CLASS "INFOUSER"
 
-id												INT, PRIMARY_KEY (AUTO_INCREMENT, NOT NULL, UNIQUE, INDEX)
-user_id (FK per ONE TO ONE)						FOREIGN_KEY, NOT NULL
+id												BIGINT, PRIMARY_KEY (UNSIGNED, AUTO_INCREMENT, NOT NULL, UNIQUE, INDEX)
+user_id (FK per ONE TO ONE)						FOREIGN_KEY (BIGINT, UNSIGNED), NULL
 mobile_phone									VARCHAR (20), NULL
 address											VARCHAR (255), NULL
 avatar											VARCHAR (255), NULL
@@ -49,7 +50,7 @@ updated_at										TIMESTAMP
 ● --------- CATEGORIES TABLE ---------
 CLASS "CATEGORY"
 
-id												INT, PRIMARY_KEY (AUTO_INCREMENT, NOT NULL, UNIQUE, INDEX)
+id												BIGINT, PRIMARY_KEY (UNSIGNED, AUTO_INCREMENT, NOT NULL, UNIQUE, INDEX)
 name											VARCHAR (255), NOT NULL
 slug											VARCHAR (255), NOT NULL, UNIQUE, INDEX
 created_at										TIMESTAMP
