@@ -21903,12 +21903,3 @@ body #page-wrapper main section h1 {
 
 /* Breakpoint Extra Large 1200px xl */
 
-main section#error {
-  color: green;
-  padding: 80px 0;
-}
-
-main section#error h1 {
-  color: red;
-}
-

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
+use App\Category;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -48,9 +50,12 @@ class PostController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function show($id)
+  public function show(Post $post)
   {
-      //
+    if(!$post) {
+      abort(404);
+    }
+    return view('admin.posts.show', ['post' => $post]);
   }
 
   /**
