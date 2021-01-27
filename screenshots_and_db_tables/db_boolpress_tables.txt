@@ -8,14 +8,37 @@ id												INT, PRIMARY_KEY (AUTO_INCREMENT, NOT NULL, UNIQUE, INDEX)
 title											VARCHAR (200), NOT NULL
 subtitle										VARCHAR (150), NULL
 slug											VARCHAR (255), NOT NULL, UNIQUE, INDEX
-cathegories										VARCHAR (100), NULL
-topics											VARCHAR (100), NULL
 content											LONGTEXT, NOT NULL
 summary											MEDIUMTEXT, NULL
 publication_date								DATETIME, NULL
 notes											VARCHAR(255), NULL
 created_at										TIMESTAMP
 updated_at										TIMESTAMP
+
+
+
+--------- CATEGORIES TABLE ---------
+CLASS "CATEGORY"
+
+id												INT, PRIMARY_KEY (AUTO_INCREMENT, NOT NULL, UNIQUE, INDEX)
+firstname										VARCHAR (30), NULL
+lastname										VARCHAR (30), NULL
+nickname										VARCHAR (30), NOT NULL, UNIQUE, INDEX
+password										VARCHAR, NOT NULL
+email											VARCHAR (30), NOT NULL, UNIQUE, INDEX
+
+
+
+--------- TOPICS TABLE ---------
+CLASS "TOPIC"
+
+id												INT, PRIMARY_KEY (AUTO_INCREMENT, NOT NULL, UNIQUE, INDEX)
+firstname										VARCHAR (30), NULL
+lastname										VARCHAR (30), NULL
+nickname										VARCHAR (30), NOT NULL, UNIQUE, INDEX
+password										VARCHAR, NOT NULL
+email											VARCHAR (30), NOT NULL, UNIQUE, INDEX
+
 
 
 --------- USERS TABLE ---------
@@ -27,6 +50,7 @@ lastname										VARCHAR (30), NULL
 nickname										VARCHAR (30), NOT NULL, UNIQUE, INDEX
 password										VARCHAR, NOT NULL
 email											VARCHAR (30), NOT NULL, UNIQUE, INDEX
+
 
 
 --------- AUTHORS TABLE ---------
