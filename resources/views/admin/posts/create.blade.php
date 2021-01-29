@@ -31,6 +31,18 @@
           </select>
         </div>
         <div class="form-group">
+          <p>Select tags:</p>
+          @foreach ($tags as $tag)
+            <div class="form-check">
+              {{-- I need an array "tags[]" to store all the data of a Checkbox --}}
+              <input type="checkbox" name="tags[]" value="{{$tag->id}}" class="form-check-input">
+              <label class="form-check-label">
+                {{$tag->name}}
+              </label>
+            </div>
+          @endforeach
+        </div>
+        <div class="form-group">
           <label for="content">Content</label>
           <textarea class="form-control" name="content" required></textarea>
         </div>

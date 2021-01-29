@@ -37,10 +37,10 @@
             </li>
             <li class="list-group-item">
               <span class="font-weight-bold">Tags: </span>
-              {{-- Looping in "tags" COLLECTION --}}
+              {{-- Looping "tags" COLLECTION --}}
               @forelse ($post->tags as $tag)
                 <a href="{{route('tags.show', ['tag_slug' => $tag->slug])}}">
-                  {{$tag->name}}{{!$loop->last ? ',' : ''}}
+                  {{$tag->name}}{{!$loop->last ? ',' : '.'}}
                 </a>
               @empty
                 <span>n\a</span>

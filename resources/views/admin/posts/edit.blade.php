@@ -25,11 +25,26 @@
           <select class="form-control" name="category_id">
             <option value="">--select category--</option>
             @foreach ($categories as $category)
-              <option value="{{$category->id}}" {{$category->id == $post->category_id ? 'selected=selected' : ''}}>
+              <option value="{{$category->id}}"
+                {{$category->id == $post->category_id ? 'selected=selected' : ''}}>
                 {{$category->name}}
               </option>
             @endforeach
           </select>
+        </div>
+        <div class="form-group">
+          <p>Select tags:</p>
+          @foreach ($tags as $tag)
+            <div class="form-check">
+              {{-- I need an array "tags[]" to store all the data of a Checkbox --}}
+              <input type="checkbox" name="tags[]" value="{{$tag->id}}" class="form-check-input"
+              {{-- I need to use the function "contains()" because "tags" is an array: it is NOT  a single element --}}
+              {{$post->tags->contains($tag) ? 'checked=checked' : ''}}>
+              <label class="form-check-label">
+                {{$tag->name}}
+              </label>
+            </div>
+          @endforeach
         </div>
         <div class="form-group">
           <label for="content">Content</label>

@@ -30,6 +30,17 @@
               {{$post->category ? $post->category->name : 'n/a'}}
             </li>
             <li class="list-group-item">
+              <span class="font-weight-bold">Tags:</span>
+              {{-- Looping "tags" COLLECTION --}}
+              @forelse ($post->tags as $tag)
+                <span>
+                  {{$tag->name}}{{!$loop->last ? ',' : '.'}}
+                </span>
+              @empty
+                <span>n\a</span>
+              @endforelse
+            </li>
+            <li class="list-group-item">
               Publication date:
               {{ date('Y-m-d', strtotime($post->publication_date))}}
             </li>

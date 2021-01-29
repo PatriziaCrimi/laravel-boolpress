@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
+use App\Tag;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -31,7 +32,8 @@ class PostController extends Controller
   public function create()
   {
     $data = [
-      'categories' => Category::all()
+      'categories' => Category::all(),
+      'tags' => Tag::all()
     ];
     return view('admin.posts.create', $data);
   }
@@ -73,6 +75,8 @@ class PostController extends Controller
     $new_post->publication_date = date('Y-m-d H:i:s');
     // Saving the new Object/Instance in the databaase
     $new_post->save();
+    // Adding the tags (array) to my post AFTER that the new Instance/Object has been already created and stored in the db (it MUST already exist)
+    $new_post->tags()->sync($form_data['tags']);
     // Redirecting to the view with all posts
     return redirect()->route('admin.posts.index');
   }
@@ -105,7 +109,8 @@ class PostController extends Controller
 
     $data = [
       'post' => $post,
-      'categories' => Category::all()
+      'categories' => Category::all(),
+      'tags' => Tag::all()
     ];
     return view('admin.posts.edit', $data);
   }
@@ -147,6 +152,8 @@ class PostController extends Controller
     }
     // Saving all new data of the Object/Instance in the database
     $post->update($form_data);
+    // Adding the tags (array) to my post AFTER that the new Instance/Object has been already created and stored in the db (it MUST already exist)
+    $post->tags()->sync($form_data['tags']);
     // Redirecting to the view with all posts
     return redirect()->route('admin.posts.index');
   }
