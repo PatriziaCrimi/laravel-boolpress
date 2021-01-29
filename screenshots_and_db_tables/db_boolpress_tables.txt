@@ -58,6 +58,30 @@ updated_at										TIMESTAMP
 
 
 
+● --------- TAGS TABLE ---------
+CLASS "TAG"
+
+id												BIGINT, PRIMARY_KEY (UNSIGNED, AUTO_INCREMENT, NOT NULL, UNIQUE, INDEX)
+name											VARCHAR (255), NOT NULL
+slug											VARCHAR (255), NOT NULL, UNIQUE, INDEX
+created_at										TIMESTAMP
+updated_at										TIMESTAMP
+
+
+
+
+----------------------------- BRIDGES TABLES -----------------------------
+
+● --------- POST_TAG TABLE ---------
+NB. Bridges tables have NO CLASSES (no need to create a Model for these tables)
+
+post_id												BIGINT, PRIMARY_KEY (UNSIGNED, AUTO_INCREMENT, NOT NULL, UNIQUE, INDEX)
+tag_id												BIGINT, PRIMARY_KEY (UNSIGNED, AUTO_INCREMENT, NOT NULL, UNIQUE, INDEX)
+created_at										TIMESTAMP
+updated_at										TIMESTAMP
+
+
+
 
 ----------------------------- TABLES RELATIONSHIPS -----------------------------
 
@@ -71,3 +95,5 @@ updated_at										TIMESTAMP
 
 
 ● POSTS TABLE & CATEGORIES TABLE -> ONE TO MANY: one category can be given to many posts VS one post has ONLY one category
+
+● POSTS TABLE & TAGS TABLE -> MANY TO MANY: many posts can have many tags && many tags can be given to many different posts
