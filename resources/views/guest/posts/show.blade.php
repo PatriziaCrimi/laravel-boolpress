@@ -36,6 +36,17 @@
               @endif
             </li>
             <li class="list-group-item">
+              <span class="font-weight-bold">Tags: </span>
+              {{-- Looping in "tags" COLLECTION --}}
+              @forelse ($post->tags as $tag)
+                <a href="{{route('tags.show', ['tag_slug' => $tag->slug])}}">
+                  {{$tag->name}}{{!$loop->last ? ',' : ''}}
+                </a>
+              @empty
+                <span>n\a</span>
+              @endforelse
+            </li>
+            <li class="list-group-item">
               Publication date:
               {{ date('Y-m-d', strtotime($post->publication_date))}}
             </li>

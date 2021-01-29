@@ -97,4 +97,5 @@ updated_at										TIMESTAMP
 
 ● POSTS TABLE & CATEGORIES TABLE -> ONE TO MANY: one category can be given to many posts VS one post has ONLY one category
 
+
 ● POSTS TABLE & TAGS TABLE -> MANY TO MANY: many posts can have many tags && many tags can be given to many different posts
