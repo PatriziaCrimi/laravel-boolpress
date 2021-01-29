@@ -26,8 +26,14 @@
           </div>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">
-              <span class="font-weight-bold">Category.</span>
-              {{$post->category ? $post->category->name : 'n/a'}}
+              <span class="font-weight-bold">Category. </span>
+              @if ($post->category)
+                <a href="{{route('categories.show', ['category_slug' => $post->category->slug])}}">
+                  {{$post->category->name}}
+                </a>
+              @else
+                <span>n/a</span>
+              @endif
             </li>
             <li class="list-group-item">
               Publication date:

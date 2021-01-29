@@ -19,6 +19,7 @@ Route::get('/', 'HomeController@index')->name('index');
 Route::get('/contacts', 'HomeController@contacts')->name('contacts');
 Route::get('/posts', 'PostController@index')->name('posts.index');
 Route::get('/posts/{slug}', 'PostController@show')->name('posts.show');
+Route::get('/categories/{category_slug}', 'CategoryController@show')->name('categories.show');
 
 // Removing the route "Register"
 Auth::routes(['register' => false]);
