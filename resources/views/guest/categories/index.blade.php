@@ -4,21 +4,21 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <h1 class="text-center">All posts</h1>
+        <h1 class="text-center">All categories</h1>
       </div>
     </div>
     <div class="row">
       <div class="col-12">
-        <p>Click on the title to see the post details.</p>
+        <p>Click on the category name to see the list of posts with this category.</p>
       </div>
     </div>
     <div class="row">
       <div class="col-12">
         <ul>
-          @foreach ($posts as $post)
+          @foreach ($categories as $category)
             <li>
-              <a href="{{route('posts.show', ['slug' => $post->slug]) }}">
-                {{ $post->title }}
+              <a href="{{route('categories.show', ['category_slug' => $category->slug]) }}">
+                {{ $category->name }}
               </a>
             </li>
           @endforeach

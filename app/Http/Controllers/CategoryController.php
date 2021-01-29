@@ -7,6 +7,13 @@ use App\Category;
 
 class CategoryController extends Controller
 {
+  public function index() {
+    $data = [
+      'categories' => Category::all()
+    ];
+    return view('guest.categories.index', $data);
+  }
+
   public function show($category_slug) {
     // QUERY to get the specified category line (Object) from the database
     $category = Category::where('slug', $category_slug)->first();

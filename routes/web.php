@@ -15,11 +15,17 @@ use Illuminate\Support\Facades\Route;
 
 // ----------- PUBLIC ROUTES -----------
 // No need to be logged in to be navigated
+// HomeController
 Route::get('/', 'HomeController@index')->name('index');
 Route::get('/contacts', 'HomeController@contacts')->name('contacts');
+// PostController
 Route::get('/posts', 'PostController@index')->name('posts.index');
 Route::get('/posts/{slug}', 'PostController@show')->name('posts.show');
+// CategoryController
+Route::get('/categories', 'CategoryController@index')->name('categories.index');
 Route::get('/categories/{category_slug}', 'CategoryController@show')->name('categories.show');
+// TagController
+Route::get('/tags', 'TagController@index')->name('tags.index');
 Route::get('/tags/{tag_slug}', 'TagController@show')->name('tags.show');
 
 // Removing the route "Register"

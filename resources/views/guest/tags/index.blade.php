@@ -4,21 +4,21 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <h1 class="text-center">All posts</h1>
+        <h1 class="text-center">All tags</h1>
       </div>
     </div>
     <div class="row">
       <div class="col-12">
-        <p>Click on the title to see the post details.</p>
+        <p>Click on the tag name to see the list of posts with this tag.</p>
       </div>
     </div>
     <div class="row">
       <div class="col-12">
         <ul>
-          @foreach ($posts as $post)
+          @foreach ($tags as $tag)
             <li>
-              <a href="{{route('posts.show', ['slug' => $post->slug]) }}">
-                {{ $post->title }}
+              <a href="{{route('tags.show', ['tag_slug' => $tag->slug]) }}">
+                {{ $tag->name }}
               </a>
             </li>
           @endforeach
