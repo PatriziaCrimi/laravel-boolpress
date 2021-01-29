@@ -166,6 +166,14 @@ class PostController extends Controller
    */
   public function destroy(Post $post)
   {
+    /*
+    Constraint: ON DELETE=RESTRICTED
+    Before deleting any post is necessary to remove any constraint between tags and posts
+    Using sync() removes all previous tags and adds the new ones but if the array is empty it adds nothing
+    */
+    // Removing all the tags connected to the post to be deleted
+    $post->tags()->sync([])
+    // Deleting the post
     $post->delete();
     return redirect()->route('admin.posts.index');
   }
