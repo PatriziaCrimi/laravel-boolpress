@@ -46,6 +46,16 @@ class PostController extends Controller
    */
   public function store(Request $request)
   {
+    /* VALIDATION */
+    // Creating the associative array to apply Laravel validation rules to the data collected through the form
+    $request->validate([
+      'title' => 'required|max:200',
+      'subtitle' => 'max:200',
+      'category_id' => 'exists:categories,id',
+      'tags' => 'exists:tags,id',
+      'content' => 'required',
+      'notes' => 'max:255'
+    ]);
     // Storing all form data in a variable
     $form_data = $request->all();
     // Creating a new Object/Instance with the form data
@@ -172,7 +182,7 @@ class PostController extends Controller
     Using sync() removes all previous tags and adds the new ones but if the array is empty it adds nothing
     */
     // Removing all the tags connected to the post to be deleted
-    $post->tags()->sync([])
+    $post->tags()->sync([]);
     // Deleting the post
     $post->delete();
     return redirect()->route('admin.posts.index');
