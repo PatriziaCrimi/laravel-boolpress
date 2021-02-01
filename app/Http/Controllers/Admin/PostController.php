@@ -137,6 +137,16 @@ class PostController extends Controller
    */
   public function update(Request $request, Post $post)
   {
+    /* VALIDATION */
+    // Creating the associative array to apply Laravel validation rules to the data collected through the form
+    $request->validate([
+      'title' => 'required|max:200',
+      'subtitle' => 'max:200',
+      'category_id' => 'nullable|exists:categories,id',
+      'tags' => 'exists:tags,id',
+      'content' => 'required',
+      'notes' => 'max:255'
+    ]);
     $form_data = $request->all();
     /* SLUG CONTROLS*/
     // Checking that the new title is different from the old one
@@ -165,8 +175,11 @@ class PostController extends Controller
     }
     // Saving all new data of the Object/Instance in the database
     $post->update($form_data);
-    // Adding the tags (array) to my post AFTER that the new Instance/Object has been already created and stored in the db (it MUST already exist)
-    $post->tags()->sync($form_data['tags']);
+    // Since "tags" are not mandatory, this is needed to check if any tag is actually added before sync() can be applied
+    if(array_key_exists('tags', $form_data)) {
+      // Adding the tags (array) to my post AFTER that the new Instance/Object has been already created and stored in the db (it MUST already exist)
+      $post->tags()->sync($form_data['tags']);
+    }
     // Redirecting to the view with all posts
     return redirect()->route('admin.posts.index');
   }
