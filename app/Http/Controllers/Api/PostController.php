@@ -10,6 +10,7 @@ class PostController extends Controller
 {
   public function index() {
     $posts = Post::all();
+    // Creation of JSON Object
     return response()->json([
       'success' => true,
       'results' => $posts
