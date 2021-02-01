@@ -51,7 +51,7 @@ class PostController extends Controller
     $request->validate([
       'title' => 'required|max:200',
       'subtitle' => 'max:200',
-      'category_id' => 'exists:categories,id',
+      'category_id' => 'nullable|exists:categories,id',
       'tags' => 'exists:tags,id',
       'content' => 'required',
       'notes' => 'max:255'
