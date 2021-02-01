@@ -85,8 +85,11 @@ class PostController extends Controller
     $new_post->publication_date = date('Y-m-d H:i:s');
     // Saving the new Object/Instance in the databaase
     $new_post->save();
-    // Adding the tags (array) to my post AFTER that the new Instance/Object has been already created and stored in the db (it MUST already exist)
-    $new_post->tags()->sync($form_data['tags']);
+    // Since "tags" are not mandatory, this is needed to check if any tag is actually added before sync() can be applied
+    if(array_key_exists('tags', $form_data)) {
+      // Adding the tags (array) to my post AFTER that the new Instance/Object has been already created and stored in the db (it MUST already exist)
+      $new_post->tags()->sync($form_data['tags']);
+    }
     // Redirecting to the view with all posts
     return redirect()->route('admin.posts.index');
   }
